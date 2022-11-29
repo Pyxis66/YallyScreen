@@ -1,0 +1,57 @@
+# Required Configuration Settings
+
+# The URL to the OctoPrint server.
+# Example: http://octopi.local or http://localhost:5000.
+# Note: the protocol (http:// or https://) is required.
+# If the setting for OCTOPRINT_HOST does not contain the protocol,
+# an error will be displayed when YallyScreen starts.
+OCTOPRINT_HOST=http://localhost:5000
+
+
+# YallyScreen expects an API key to be supplied. The API key can
+# either be set in YallyScreen's config file, or in OctoPrint's config
+# file (OCTOPRINT_CONFIG_FILE below)
+OCTOPRINT_APIKEY=
+
+
+# Location of the application theme
+YALLYSCREEN_STYLE_PATH=/opt/yallyscreen/styles/pyxis66/
+
+
+
+# Optional Configuration Settings
+
+# The location of OctoPrint's config.yaml file.
+# If empty, the file path used will be the pi home folder of the current user.
+# The OCTOPRINT_APIKEY is required, and if it isn't defined in YallyScreen's
+# config file (see OCTOPRINT_APIKEY above), it needs to be defined in OctoPrint's
+# config file.
+OCTOPRINT_CONFIG_FILE=/home/pi/.octoprint/config.yaml
+
+
+# The file path to where the log file will be saved.
+# The file path should be a fully qualified path and not only include the path
+# to the log file, but the name of the log file as well
+# (eg /home/pi/logs/logfile.txt).
+# The log file is appended to and is never automatically truncated, and
+# will grow over time.  If you turn log file logging on (by specifying a path),
+# be sure to turn it off (by setting the value to "").
+YALLYSCREEN_LOG_FILE_PATH=
+#YALLYSCREEN_LOG_FILE_PATH=/home/pi/logs/logfile.txt
+
+
+# Controls the level of logging.
+# Accepted values are (with increasing levels): debug, info, warn, and error.
+YALLYSCREEN_LOG_LEVEL=Error
+
+
+# Resolution of the application, and should be configured to the resolution of your
+# screen, for example 800x480.
+YALLYSCREEN_RESOLUTION=800x480
+# YALLYSCREEN_RESOLUTION is optional and defaults to 800x480 if missing
+# (defined in globalVars.go)
+
+
+# To display the cursor, uncomment the following line and set to true.
+#DISPLAY_CURSOR=true
+# You will also need to edit /lib/systemd/system/yallyscreen.service and remove "-nocursor"

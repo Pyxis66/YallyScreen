@@ -1,0 +1,18 @@
+[Unit]
+Description=YallyScreen
+Conflicts=getty@tty7.service
+After=systemd-user-sessions.service getty@tty7.service plymouth-quit.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+EnvironmentFile=/etc/yallyscreen/config
+ExecStart=/usr/bin/xinit /usr/bin/YallyScreen -- :0 -nolisten tcp -nocursor
+ExecStartPost=/bin/bash /etc/Yallyscreen/disablescreenblank.sh 0
+StandardOutput=journal
+Restart=always
+WatchdogSec=40s
+
+[Install]
+WantedBy=graphical.target
+Alias=display-manager.service

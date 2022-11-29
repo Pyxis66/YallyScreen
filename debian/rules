@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE := 1
+export DH_GOPKG := github.com/Pyxis66/YallyScreen
+export DH_GOLANG_INSTALL_ALL := 1
+export DH_GOLANG_EXCLUDES := vendor
+export GOCACHE := $(GOPATH)/pkg
+
+%:
+	dh $@ --buildsystem=golang --with=golang,systemd
+
+override_dh_auto_build:
+	dh_auto_build -O--buildsystem=golang -O--no-parallel -- \
+		--tags $(GO_TAGS) \
+		-ldflags "\
+			-X $(DH_GOPKG)/ui.Version=$(VERSION) \
+			-X $(DH_GOPKG)/ui.Build=$(BUILD_DATE)\
+		"
+
+override_dh_golang:
+	# The dh_golang is used to add the Built-using field to the deb. This is only for reference.
+	# https://github.com/git-lfs/git-lfs/pull/2203/files
+	# dh_golang errors out because the go compiler used was not installed via a package. Therefore the step is skipped
+
+override_dh_install:
+	mkdir -p $(CURDIR)/debian/octoscreen/opt/octoscreen/
+	cp -r styles $(CURDIR)/debian/octoscreen/opt/octoscreen/
+	rm -rf $(CURDIR)/debian/octoscreen/usr/share/gocode
+	dh_install -XLICENSE
+
+override_dh_auto_test:
+	echo "skip no tests"
