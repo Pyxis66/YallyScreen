@@ -1,12 +1,12 @@
 window {
-	background-color: #13181C;
+	background-color: #610B0B;
 	-gtk-icon-shadow: none;
 	font-size: 20px;
 }
 
 scrollbar, scrollbar button {
 	border: none;
-	background-color: #13181C;
+	background-color: #610B0B;
 }
 
 scrollbar slider {
@@ -68,7 +68,7 @@ progress {
 /* Button styles *********************************************************** */
 button {
 	background-image: none;
-	background-color: #13181C;
+	background-color: #610B0B;
 	margin: 5px;
 	margin-bottom: 10px;
 	border-radius: 0;
